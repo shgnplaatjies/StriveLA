@@ -5,37 +5,35 @@
 #
 # Note: if you want to stage/commit WP core files
 # you can delete this whole section/until Configuration.
-Sites/wp-admin/
-Sites/wp-content/index.php
-Sites/wp-content/languages
-Sites/wp-content/plugins/index.php
+Sites/thrivedx/wp-admin/
+Sites/thrivedx/wp-content/index.php
+Sites/thrivedx/wp-content/languages/
 Themes/wp-content/themes/index.php
-Plugins/wp-content/plugins/index.php
-Sites/wp-content/themes/index.php
-Sites/wp-includes/
-Sites/index.php
-Sites/license.txt
-Sites/readme.html
-Sites/wp-*.php
-Sites/xmlrpc.php
+Sites/thrivedx/wp-content/themes/index.php
+Sites/thrivedx/wp-includes/
+Sites/thrivedx/index.php
+Sites/thrivedx/license.txt
+Sites/thrivedx/readme.html
+Sites/thrivedx/wp-*.php
+Sites/thrivedx/xmlrpc.php
 
 # Configuration
-/Sites/wp-config.php
+/Sites/thrivedx/wp-config.php
 
 # Example themes
-Sites/wp-content/themes/twenty*/
+Sites/thrivedx/wp-content/themes/twenty*/
 
 # Example plugin
-Sites/wp-content/plugins/hello.php
+Sites/thrivedx/wp-content/plugins/hello.php
 
 # Uploads
-Sites/wp-content/uploads/
+Sites/thrivedx/wp-content/uploads/
 
 # Log files
 *.log
 
 # htaccess
-Sites/.htaccess
+Sites/thrivedx/.htaccess
 
 # Optional Plugins
 Plugins/akismet/
