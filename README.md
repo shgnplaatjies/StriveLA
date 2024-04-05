@@ -52,6 +52,10 @@ This WordPress plugin allows users to add and display custom fields on the front
 
 These considerations ensure the plugin's robustness, security, and ease of maintenance.
 
+Inspo: 
+![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/2940497a-c745-455c-a55e-5fbabd2fac80)
+
+
 ![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/a8f71bee-53f0-4d42-b4eb-0c1f66663ff4)
 
 
