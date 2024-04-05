@@ -24,7 +24,8 @@ This WordPress plugin allows users to add and display custom fields on the front
 - **Methodology (Text)**
 - **Price (Number)**
 
-![Custom Fields](Pasted%20image%20240403151538.png)
+![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/727db9c0-45b3-449a-a538-b15fcc9a2c67)
+
 
 ### Implementation Details
 - The plugin implements custom fields for displaying images, dates, and text.
@@ -50,3 +51,7 @@ This WordPress plugin allows users to add and display custom fields on the front
 - **File Access Control:** Employed absolute path checks to restrict PHP file access to within WordPress only.
 
 These considerations ensure the plugin's robustness, security, and ease of maintenance.
+
+![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/a8f71bee-53f0-4d42-b4eb-0c1f66663ff4)
+
+
