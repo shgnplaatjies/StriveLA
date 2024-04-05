@@ -1,5 +1,5 @@
 # Custom WordPress Plugin
-### Author: Shagan Plaatjies
+##### Author: Shagan Plaatjies
 
 ## Description
 This WordPress plugin allows users to add and display custom fields on the front end of WordPress posts. It implements custom text, date, and image fields with user-friendly customization options.
