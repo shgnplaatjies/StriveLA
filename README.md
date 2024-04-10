@@ -44,8 +44,11 @@ This WordPress plugin allows users to add and display custom fields on the front
 - **Choice of Tools:** Avoided tools like Advanced Custom Fields and Custom Post Type UI plugins in favour of a manual approach.
 - **Plugin Implementation:** Implemented as a Must-Use plugin to separate it from the theme and load it early during WordPress initialization.
 - **Input Sanitization:** Sanitized the text fields to prevent script-injection.
-- **File Access Control:** Employed absolute path checks to restrict PHP file access to within WordPress only.
+- **File Access Control:** Employed absolute path checks to restrict PHP file access within to WordPress.
 - **Security Measures:** Used nonce's to prevent cross-site request forgery attacks.
+- **Script Injection Security:** Utilized `esc_attr()` and `esc_html()` functions to escape attributes and HTML text for better security, reducing the risk of XSS (Cross-Site Scripting) vulnerabilities.
+- **Translation Accessibility:** Used translation functions (`esc_html_e()`) instead of `echo`, enabling translation plugin support to improve accessibility.
+- **Code Readability:** I've formatted and split the codebase into multiple files according to WordPress best practices for streamlined collaboration.
 
 Inspo: 
 ![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/2940497a-c745-455c-a55e-5fbabd2fac80)
