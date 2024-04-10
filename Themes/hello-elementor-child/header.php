@@ -22,7 +22,7 @@ $skip_link_url = apply_filters('hello_elementor_skip_link_url', '#content');
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="<?php echo esc_attr($viewport_content); ?>">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-	<!-- Installs Tailwind from CDN -->
+	<!-- Don't install from CDN in production -->
 	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 	<?php wp_head(); ?>
 </head>

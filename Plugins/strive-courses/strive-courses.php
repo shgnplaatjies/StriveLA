@@ -1,4 +1,10 @@
 <?php
+/*
+Plugin Name: Strive Courses
+Description: Plugin that allows you to display a custom post type called courses and use it as a post on the front end.
+Version: 0.1
+Author: Shagan Plaatjies
+*/
 
 // Exit if accessed directly.
 if (!defined('ABSPATH'))
@@ -30,9 +36,11 @@ if (!function_exists('wpss_create_courses_cpt')) {
       'items_list_navigation' => __('Courses list navigation', 'text_domain'),
       'filter_items_list' => __('Filter courses list', 'text_domain'),
     );
+
     $rewrite = array(
       'slug' => 'courses',
     );
+
     $args = array(
       'label' => __('Course', 'text_domain'),
       'description' => __('Courses offered by StriveSA', 'text_domain'),
@@ -64,12 +72,6 @@ class StriveSA_MetaBox_CourseInfo
 
   private $meta_fields = array(
     array(
-      'label' => 'Featured Image',
-      'id' => 'wpss_course_featured_image',
-      'type' => 'media',
-      'returnvalue' => 'url',
-    ),
-    array(
       'label' => 'Start Date',
       'id' => 'wpss_course_start_date',
       'type' => 'date',
@@ -79,6 +81,12 @@ class StriveSA_MetaBox_CourseInfo
       'label' => 'End Date',
       'id' => 'wpss_course_end_date',
       'type' => 'date',
+      'default' => '',
+    ),
+    array(
+      'label' => 'Overview',
+      'id' => 'wpss_course_overview',
+      'type' => 'text',
       'default' => '',
     ),
     array(
@@ -94,16 +102,22 @@ class StriveSA_MetaBox_CourseInfo
       'options' => array('Remote', 'Hybrid', 'In-Person'),
     ),
     array(
-      'label' => 'Methodology Icon',
-      'id' => 'wpss_course_methodology_icon',
+      'label' => 'Course Icon',
+      'id' => 'wpss_course_coures_icon',
       'type' => 'media',
-      'returnvalue' => 'url', // Change from 'ID' to 'url'
+      'returnvalue' => 'url',
     ),
     array(
       'label' => 'Price',
       'id' => 'wpss_course_price',
       'type' => 'text',
       'default' => '99',
+    ),
+    array(
+      'label' => 'Currency (Set by WooCommerce)',
+      'id' => 'wpss_course_currency',
+      'type' => 'text',
+      'default' => 'R',
     ),
     array(
       'label' => 'Border Style',
@@ -116,7 +130,19 @@ class StriveSA_MetaBox_CourseInfo
       'id' => 'wpss_course_duration_style',
       'type' => 'select',
       'options' => array('Absolute', 'Relative')
-    )
+    ),
+    array(
+      'label' => 'Course Button Text (Visible if set)',
+      'id' => 'wpss_course_text',
+      'type' => 'text',
+      'default' => '',
+    ),
+    array(
+      'label' => 'Course Button Link (Visible if set)',
+      'id' => 'wpss_course_link',
+      'type' => 'text',
+      'default' => '',
+    ),
   );
 
   public function __construct()
@@ -141,52 +167,52 @@ class StriveSA_MetaBox_CourseInfo
 
   public function meta_box_callback($post)
   {
-    wp_nonce_field('CourseInfo_data', 'courseinfo_nonce');
+    wp_nonce_field('CourseInfo_data', 'courseinfo_wpnonce');
     echo 'Information relating to this course.';
     $this->field_generator($post);
   }
 
   public function media_fields()
   { ?>
-        <script> jQuery(document).ready(function ($) {
-            if (typeof wp.media !== 'undefined') {
-              let _custom_media = true,
-                _orig_send_attachment = wp.media.editor.send.attachment;
+    <script> jQuery(document).ready(function ($) {
+        if (typeof wp.media !== 'undefined') {
+          let _custom_media = true,
+            _orig_send_attachment = wp.media.editor.send.attachment;
 
-              $('.new-media').click(function (e) {
-                let send_attachment_bkp = wp.media.editor.send.attachment;
-                let button = $(this);
-                let id = button.attr('id').replace('_button', '');
-                _custom_media = true;
+          $('.new-media').click(function (e) {
+            let send_attachment_bkp = wp.media.editor.send.attachment;
+            let button = $(this);
+            let id = button.attr('id').replace('_button', '');
+            _custom_media = true;
 
-                wp.media.editor.send.attachment = function (props, attachment) {
-                  if (_custom_media) {
-                    if ($('input#' + id).data('return') == 'url') $('input#' + id).val(attachment.url);
-                    else $('input#' + id).val(attachment.id);
+            wp.media.editor.send.attachment = function (props, attachment) {
+              if (_custom_media) {
+                if ($('input#' + id).data('return') == 'url') $('input#' + id).val(attachment.url);
+                else $('input#' + id).val(attachment.id);
 
-                    $('div#preview' + id).css('background-image', 'url(' + attachment.url + ')');
-                  } else return _orig_send_attachment.apply(this, [props, attachment]);
+                $('div#preview' + id).css('background-image', 'url(' + attachment.url + ')');
+              } else return _orig_send_attachment.apply(this, [props, attachment]);
 
-                }
-                wp.media.editor.open(button);
-
-                return false;
-              });
-
-              $('.add_media').on('click', function () {
-                _custom_media = false;
-              });
-
-              $('.remove-media').on('click', function () {
-                let parent = $(this).parents('td');
-
-                parent.find('input[type="text"]').val('');
-                parent.find('div').css('background-image', 'url()');
-              });
             }
+            wp.media.editor.open(button);
+
+            return false;
           });
-        </script>
-        <?php
+
+          $('.add_media').on('click', function () {
+            _custom_media = false;
+          });
+
+          $('.remove-media').on('click', function () {
+            let parent = $(this).parents('td');
+
+            parent.find('input[type="text"]').val('');
+            parent.find('div').css('background-image', 'url()');
+          });
+        }
+      });
+    </script>
+    <?php
   }
 
   public function field_generator($post)
@@ -206,16 +232,15 @@ class StriveSA_MetaBox_CourseInfo
 
         case 'media':
           $meta_type = '';
-          if ($meta_value && isset($meta_field['returnvalue'])) {
-            if ($meta_field['returnvalue'] == 'ID') {
-              $meta_type = $meta_value;
-            } else {
-              $meta_type = $meta_value; // Just use the URL directly
-            }
-          }
+          if ($meta_value && isset($meta_field['returnvalue']))
+            $meta_type = $meta_value; // Then use the URL directly
 
           $input_hidden = sprintf(
-            '<input style="display:none;" id="%s" name="%s" type="text" value="%s" data-return="%s">',
+            '<input style="display:none;"
+                    id="%s"
+                    name="%s"
+                    type="text" value="%s"
+                    data-return="%s">',
             $meta_field['id'],
             $meta_field['id'],
             $meta_value,
@@ -223,19 +248,40 @@ class StriveSA_MetaBox_CourseInfo
           );
 
           $preview_div = sprintf(
-            '<div id="preview%s" style="margin-right:10px;border:1px solid #e2e4e7;background-color:#fafafa;display:inline-block;width: 100px;height:100px;background-image:url(%s);background-size:cover;background-repeat:no-repeat;background-position:center;"></div>',
+            '<div id="preview%s" style="margin-right:10px;
+                                        border:1px solid #e2e4e7;
+                                        background-color:#fafafa;
+                                        display:inline-block;
+                                        width: 100px;
+                                        height:100px;
+                                        background-image:url(%s);
+                                        background-size:cover;
+                                        background-repeat:no-repeat;
+                                        background-position:center;"></div>',
             $meta_field['id'],
             $meta_type
           );
 
+
           $button_select = sprintf(
-            '<input style="width: 3rem;margin-right:5px;" class="button new-media" id="%s_button" name="%s_button" type="button" value="Select" />',
+            '<input style="width: 3rem;
+                    margin-right:5px;"
+                    class="button new-media"
+                    id="%s_button"
+                    name="%s_button"
+                    type="button"
+                    value="Select" />',
             $meta_field['id'],
             $meta_field['id']
           );
 
           $button_clear = sprintf(
-            '<input style="width: 3rem;" class="button remove-media" id="%s_buttonremove" name="%s_buttonremove" type="button" value="Clear" />',
+            '<input style="width: 3rem;"
+                    class="button remove-media"
+                    id="%s_buttonremove"
+                    name="%s_buttonremove"
+                    type="button"
+                    value="Clear" />',
             $meta_field['id'],
             $meta_field['id']
           );
@@ -285,13 +331,13 @@ class StriveSA_MetaBox_CourseInfo
 
   public function save_fields($post_id)
   {
-    if (!isset($_POST['courseinfo_nonce']))
+    if (!isset($_POST['courseinfo_wpnonce']))
       return $post_id;
 
-    $nonce = $_POST['courseinfo_nonce'];
+    $nonce = $_POST['courseinfo_wpnonce'];
 
-    // if (!wp_verify_nonce($nonce, 'courseinfo_nonce'))
-    //   return $post_id;
+    if (!wp_verify_nonce($nonce, 'CourseInfo_data'))
+      return $post_id;
 
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
       return $post_id;
@@ -314,3 +360,49 @@ class StriveSA_MetaBox_CourseInfo
 
 if (class_exists('StriveSA_MetaBox_CourseInfo'))
   new StriveSA_MetaBox_CourseInfo;
+
+
+function wpss_load_custom_course_template($template)
+{
+  global $post;
+
+  if ($post && $post->post_type == 'wpss_course') {
+    if (is_archive('wpss_course')) {
+      $archive_template = plugin_dir_path(__FILE__) . 'archive-wpss_course.php';
+
+      if (file_exists($archive_template)) {
+        return $archive_template;
+      }
+    } elseif (is_singular('wpss_course')) {
+      $single_template = plugin_dir_path(__FILE__) . 'single-wpss_course.php';
+
+      if (file_exists($single_template)) {
+        return $single_template;
+      }
+    }
+  }
+
+  return $template;
+}
+add_filter('template_include', 'wpss_load_custom_course_template');
+
+function custom_fields_shortcode_handler($atts)
+{
+  $atts = shortcode_atts(
+    array(
+      'field' => '',
+      'format' => 'text',
+    ),
+    $atts,
+    'custom_field'
+  );
+
+  $field_value = get_post_meta(get_the_ID(), $atts['field'], true);
+
+  if ($atts['format'] === 'image') {
+    return '<img src="' . esc_url($field_value) . '" alt="Custom Image">';
+  } else {
+    return $field_value;
+  }
+}
+add_shortcode('custom_field', 'custom_fields_shortcode_handler');
