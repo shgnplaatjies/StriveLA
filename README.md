@@ -46,9 +46,9 @@ This WordPress plugin allows users to add and display custom fields on the front
 
 ##### Conditional Rendering Display Options
 - Rounded borders + Absolute date format + button configuration.
-- ![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/8c2af1e7-edbf-4889-b34c-b64bba9dd62e)
+![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/8c2af1e7-edbf-4889-b34c-b64bba9dd62e)
 - Squared Borders + Relative Date format + Removed Button
-- ![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/6568ee56-aa4f-43bf-9016-1d8b68067db5)
+![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/6568ee56-aa4f-43bf-9016-1d8b68067db5)
 
 
 ### Implementation Details
