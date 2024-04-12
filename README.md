@@ -1,6 +1,14 @@
 # Custom WordPress Plugin
 ##### Author: Shagan Plaatjies
 
+## Table of Contents
+
+1. [Description](#description)
+2. [Features](#features)
+3. [Installation Instructions](#installation-instructions)
+4. [Custom Fields Implementation](#custom-fields-implementation)
+5. [Documentation Considerations](#documentation-considerations)
+
 ## Description
 This WordPress plugin allows users to add and display custom fields on the front end of WordPress posts. It implements custom text, date, and image fields with user-friendly customization options for a course summary card.
 
