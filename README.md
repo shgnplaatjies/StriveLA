@@ -1,6 +1,14 @@
 # Custom WordPress Plugin
 ##### Author: Shagan Plaatjies
 
+## Table of Contents
+
+1. [Description](#description)
+2. [Features](#features)
+3. [Installation Instructions](#installation-instructions)
+4. [Custom Fields Implementation](#custom-fields-implementation)
+5. [Documentation Considerations](#documentation-considerations)
+
 ## Description
 This WordPress plugin allows users to add and display custom fields on the front end of WordPress posts. It implements custom text, date, and image fields with user-friendly customization options for a course summary card.
 
@@ -25,7 +33,22 @@ This WordPress plugin allows users to add and display custom fields on the front
 - **Border Style**
 - **Price (Number)**
 
-![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/727db9c0-45b3-449a-a538-b15fcc9a2c67)
+
+### Inspiration
+![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/2940497a-c745-455c-a55e-5fbabd2fac80)
+
+### Demo/Preview
+##### Custom Post Type:
+![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/b431450b-1b75-4cbd-84fc-d31f9793e240)
+
+##### Custom Course-Related Fields:
+![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/ef4531b5-1f0e-4fa2-b2bb-6e69344d3e5c)
+
+##### Conditional Rendering Display Options
+- Rounded borders + Absolute date format + button configuration.
+![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/8c2af1e7-edbf-4889-b34c-b64bba9dd62e)
+- Squared Borders + Relative Date format + Removed Button
+![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/6568ee56-aa4f-43bf-9016-1d8b68067db5)
 
 
 ### Implementation Details
@@ -44,12 +67,8 @@ This WordPress plugin allows users to add and display custom fields on the front
 - **Choice of Tools:** Avoided tools like Advanced Custom Fields and Custom Post Type UI plugins in favour of a manual approach.
 - **Plugin Implementation:** Implemented as a Must-Use plugin to separate it from the theme and load it early during WordPress initialization.
 - **Input Sanitization:** Sanitized the text fields to prevent script-injection.
-- **File Access Control:** Employed absolute path checks to restrict PHP file access to within WordPress only.
+- **File Access Control:** Employed absolute path checks to restrict PHP file access within to WordPress.
 - **Security Measures:** Used nonce's to prevent cross-site request forgery attacks.
-
-Inspo: 
-![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/2940497a-c745-455c-a55e-5fbabd2fac80)
-
-
-![image](https://github.com/shgnplaatjies/StriveSA/assets/63879125/a8f71bee-53f0-4d42-b4eb-0c1f66663ff4)
-
+- **Script Injection Security:** Utilized `esc_attr()` and `esc_html()` functions to escape attributes and HTML text for better security, in addition to input sanitization, reducing the risk of XSS (Cross-Site Scripting) vulnerabilities.
+- **Translation Accessibility:** Used translation functions (`esc_html_e()`) instead of `echo`, enabling translation plugin support to improve accessibility.
+- **Code Readability:** I've formatted and split the codebase into multiple files according to WordPress best practices for streamlined collaboration.
