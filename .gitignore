@@ -43,3 +43,14 @@ wp-content/cache-config.php
 .env.example
 /.env.*
 !/wp-content/plugins/**/mu-plugins/
+
+# Ignore vendor dependencies managed by Composer
+/vendor/
+
+# Ignore compiled theme assets
+/dist/
+/node_modules/
+npm-debug.log*
+
+# Ignore built theme
+/web/
