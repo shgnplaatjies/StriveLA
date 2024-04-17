@@ -1,46 +1,45 @@
-# Wordpress - ignore core, configuration, examples, uploads and logs.
-# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+# Ignore WordPress core files
+wp-admin/
+wp-content/index.php
+wp-content/languages/
+wp-includes/
+index.php
+license.txt
+readme.html
+wp-*.php
+xmlrpc.php
 
-# Core
-#
-# Note: if you want to stage/commit WP core files
-# you can delete this whole section/until Configuration.
-Sites/thrivedx/wp-admin/
-Sites/thrivedx/wp-content/index.php
-Sites/thrivedx/wp-content/languages/
-Themes/wp-content/themes/index.php
-Sites/thrivedx/wp-content/themes/index.php
-Sites/thrivedx/wp-includes/
-Sites/thrivedx/index.php
-Sites/thrivedx/license.txt
-Sites/thrivedx/readme.html
-Sites/thrivedx/wp-*.php
-Sites/thrivedx/xmlrpc.php
+# Ignore WordPress configuration file
+wp-config.php
 
-# Configuration
-/Sites/thrivedx/wp-config.php
+# Ignore example themes
+wp-content/themes/twenty*/
 
-# Example themes
-Sites/thrivedx/wp-content/themes/twenty*/
+# Ignore example plugin
+wp-content/plugins/hello.php
 
-# Example plugin
-Sites/thrivedx/wp-content/plugins/hello.php
+# Ignore uploads
+wp-content/uploads/
 
-# Uploads
-Sites/thrivedx/wp-content/uploads/
-
-# Log files
+# Ignore log files
 *.log
 
-# htaccess
-Sites/thrivedx/.htaccess
+# Ignore .htaccess
+/.htaccess
 
-# Optional Plugins
-Plugins/akismet/
-Plugins/elementor/
+# Ignore Local by Flywheel configuration files
+/.localbyflywheel/
 
-# Using Must-Use, no need for wp-include
-Sites/thrivedx/wp-includes/
+# Ignore cache and temporary files
+wp-content/cache/
+wp-content/upgrade/
+wp-content/temp/
+wp-content/backups/
+wp-content/advanced-cache.php
+wp-content/cache-config.php
 
-# Plugin works independently of wp-admin
-Sites/thrivedx/wp-admin/
+# Ignore environment-specific files
+.env
+.env.example
+/.env.*
+!/wp-content/plugins/**/mu-plugins/
