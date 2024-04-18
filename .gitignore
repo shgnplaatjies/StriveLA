@@ -42,7 +42,6 @@ wp-content/cache-config.php
 .env
 .env.example
 /.env.*
-!/wp-content/plugins/**/mu-plugins/
 
 # Ignore vendor dependencies managed by Composer
 /vendor/
