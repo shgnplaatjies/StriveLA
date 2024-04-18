@@ -10,7 +10,7 @@
 5. [Documentation Considerations](#documentation-considerations)
 
 ## Description
-This WordPress plugin allows users to add and display custom fields on the front end of WordPress posts. It implements custom text, date, and image fields with user-friendly customization options for a course summary card.
+This WordPress plugin is built on Bedrock and uses Composer and for version control and Sage 10 for templating. Allows users to add and display custom fields on the front end of WordPress posts. It implements custom text, date, and image fields with user-friendly customization options for a course summary card.
 
 ## Features
 1. Custom fields for posts (text, date, image).
@@ -59,7 +59,7 @@ This WordPress plugin allows users to add and display custom fields on the front
 - Date fields allow users to select from different date formats and use different date formats.
 
 ## Documentation Considerations
-- **Source Control:** Utilized symbolic linking for clean and maintainable source control.
+- **Source and Plugin Version Control:** Utilized Bedrock with Sage 10 and Composer for clean and maintainable source and plugin control and strict, modern configuration access control.
 - **WordPress Theme Customizations:** Used a Child Theme to ensure customizations remain intact after theme updates.
 - **Plugin Repository Independence:** Employed symbolic link structure to separate concerns of plugins, themes, and their host WordPress installations. This enables compatibility testing and cleaner repository creation. 
 - **WordPress Theme Customizations:** Used a Child Theme to ensure customizations remain intact after theme updates.
