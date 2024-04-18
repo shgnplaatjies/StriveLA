@@ -9,15 +9,6 @@ readme.html
 wp-*.php
 xmlrpc.php
 
-# Ignore WordPress configuration file
-wp-config.php
-
-# Ignore example themes
-wp-content/themes/twenty*/
-
-# Ignore example plugin
-wp-content/plugins/hello.php
-
 # Ignore uploads
 wp-content/uploads/
 
