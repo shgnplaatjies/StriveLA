@@ -41,6 +41,3 @@ wp-content/cache-config.php
 /dist/
 /node_modules/
 npm-debug.log*
-
-# Ignore built theme
-/web/
