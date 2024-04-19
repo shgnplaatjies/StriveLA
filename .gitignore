@@ -41,3 +41,15 @@ wp-content/cache-config.php
 /dist/
 /node_modules/
 npm-debug.log*
+
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+web/app/cache/*
+
+# WordPress
+web/wp
+web/.htaccess
+
+# WP-CLI
+wp-cli.local.yml
